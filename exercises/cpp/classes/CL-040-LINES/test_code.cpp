@@ -6,36 +6,37 @@ using std::cout;
 using std::endl;
 using std::boolalpha;
 
-void test_for_output_text();
-void test_call_hasnext_at_end();
-void test_empty_file();
+bool test_for_output_text();
+bool test_call_hasnext_at_end();
+bool test_empty_file();
 
 int main()
 {
-    test_for_output_text();
-    test_call_hasnext_at_end();
-    test_empty_file();
+    cout << std::boolalpha << "1 test (output text): " <<  test_for_output_text() << endl;
+    cout << "2 test (test hasNext at end): " << test_call_hasnext_at_end() << endl;
+    cout << "3 test (empty file: " << test_empty_file() << endl;
+    
     cout << "testing completed." << endl;
     return 0;
 }
 
-void test_for_output_text()
+bool test_for_output_text()
 {
     char * path ="test_1.txt";
     TextFileReader f(path);
-    cout << boolalpha << "test_1: " << endl << f.get() << " " << f.get() << endl << f.hasNext() << endl;
+    return ("1_line" == f.get()) && ("2_line" == f.get()) && (f.hasNext() == true);
 }
 
-void test_call_hasnext_at_end()
+bool test_call_hasnext_at_end()
 {
     char * path = "test_2.txt";
     TextFileReader f(path);
-    cout << "test_2: " << endl << f.get()  << endl << f.hasNext() << endl;
+    return ("1_line" == f.get()) && (f.hasNext() == false);
 }
 
-void test_empty_file()
+bool test_empty_file()
 {
     char * path = "test_3.txt";
     TextFileReader f(path);
-    cout << "test_3: " << endl << f.hasNext()  << endl << f.get() << f.hasNext() << endl;
+    return (f.hasNext() == false);
 }
