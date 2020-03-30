@@ -1,0 +1,4 @@
+all:
+	g++ -std=c++11 test.cpp string.cpp
+test:
+	./a.out
