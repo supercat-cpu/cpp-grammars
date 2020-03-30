@@ -1,0 +1,7 @@
+File './uniqueptr.hpp'
+Lines executed:100.00% of 2
+./uniqueptr.hpp:creating 'uniqueptr.hpp.gcov'
+
+File 'test.cpp'
+Lines executed:100.00% of 64
+test.cpp:creating 'test.cpp.gcov'
