@@ -1,10 +1,3 @@
-//
-//  uniqueptr.cpp
-//  
-//
-//  Created by Екатерина Евдокимова on 05.03.20.
-//
-
 #include "uniqueptr.hpp"
 
 
@@ -18,10 +11,12 @@ IntUniquePtr :: IntUniquePtr(IntUniquePtr &p) {
 }
 
 IntUniquePtr :: ~IntUniquePtr() {
-    delete ptr;
+    if (ptr != nullptr) {
+        delete ptr;
+    }
 }
 
-int IntUniquePtr :: operator * () {
+int &IntUniquePtr :: operator * () {
     return *ptr;
 }
 bool IntUniquePtr :: operator < (IntUniquePtr p) {

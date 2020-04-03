@@ -1,5 +1,4 @@
 реализация задания OP-040-UNIQUPTR
-компиляция:
-`make -f makefile`
 запуск тестов:
-`make -f makefile test`
+положите рядом со своим решением makefile и файл test.cpp и запустите следющую команду
+`make test`
