@@ -4,20 +4,18 @@
 class IntUniquePtr {
     int *ptr;
 public:
-    IntUniquePtr(): ptr(nullptr) {}
+    IntUniquePtr();
     IntUniquePtr(int *p);
     IntUniquePtr(IntUniquePtr &p);
     ~IntUniquePtr();
-    int &operator * ();
-    bool operator < (IntUniquePtr p);
-    bool operator > (IntUniquePtr p);
-    bool operator <= (IntUniquePtr p);
-    bool operator >= (IntUniquePtr p);
-    bool operator == (IntUniquePtr p);
-    bool operator != (IntUniquePtr p);
-    int * getraw () {
-        return ptr;
-    }
+    int &operator * () const;
+    bool operator < (IntUniquePtr p) const;
+    bool operator > (IntUniquePtr p) const;
+    bool operator <= (IntUniquePtr p) const;
+    bool operator >= (IntUniquePtr p) const;
+    bool operator == (IntUniquePtr p) const;
+    bool operator != (IntUniquePtr p) const;
+    int * getraw()  const;
 };
 
 #endif

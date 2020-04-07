@@ -30,51 +30,51 @@ bool test_deref () {
 }
 
 bool test_less () {
-    int *pn1 = new int;
+    int *pn1 = new int(20);
     IntUniquePtr p1(pn1);
-    int *pn2 = new int;
+    int *pn2 = new int(30);
     IntUniquePtr p2(pn2);
-    return (*p1 < *p2) == (*pn1 < *pn2);
+    return (p1 < p2) == (*pn1 < *pn2);
 }
 
 bool test_more () {
-    int *pn1 = new int;
+    int *pn1 = new int(20);
     IntUniquePtr p1(pn1);
-    int *pn2 = new int;
+    int *pn2 = new int(30);
     IntUniquePtr p2(pn2);
-    return (*p1 > *p2) == (*pn1 > *pn2);
+    return (p1 > p2) == (*pn1 > *pn2);
 }
 
 bool test_less_equal () {
-    int *pn1 = new int;
+    int *pn1 = new int(30);
     IntUniquePtr p1(pn1);
-    int *pn2 = new int;
+    int *pn2 = new int(30);
     IntUniquePtr p2(pn2);
-    return (*p1 <= *p2) == (*pn1 <= *pn2);
+    return (p1 <= p2) == (*pn1 <= *pn2);
 }
 
 bool test_more_equal () {
-    int *pn1 = new int;
+    int *pn1 = new int(20);
     IntUniquePtr p1(pn1);
-    int *pn2 = new int;
+    int *pn2 = new int(20);
     IntUniquePtr p2(pn2);
-    return (*p1 >= *p2) == (*pn1 >= *pn2);
+    return (p1 >= p2) == (*pn1 >= *pn2);
 }
 
 bool test_equal () {
-    int *pn1 = new int;
+    int *pn1 = new int(12);
     IntUniquePtr p1(pn1);
-    int *pn2 = new int;
+    int *pn2 = new int(13);
     IntUniquePtr p2(pn2);
-    return (*p1 == *p2) == (*pn1 == *pn2);
+    return (p1 == p2) == (*pn1 == *pn2);
 }
 
 bool test_not_equal () {
-    int *pn1 = new int;
+    int *pn1 = new int(23);
     IntUniquePtr p1(pn1);
-    int *pn2 = new int;
+    int *pn2 = new int(34);
     IntUniquePtr p2(pn2);
-    return (*p1 != *p2) == (*pn1 != *pn2);
+    return (p1 != p2) == (*pn1 != *pn2);
 }
 
 int main() {

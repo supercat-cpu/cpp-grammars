@@ -1,5 +1,7 @@
 #include "uniqueptr.hpp"
+#include <iostream>
 
+IntUniquePtr :: IntUniquePtr(): ptr(nullptr) {}
 
 IntUniquePtr :: IntUniquePtr(int *p) {
     ptr = p;
@@ -16,24 +18,27 @@ IntUniquePtr :: ~IntUniquePtr() {
     }
 }
 
-int &IntUniquePtr :: operator * () {
+int &IntUniquePtr :: operator * () const {
     return *ptr;
 }
-bool IntUniquePtr :: operator < (IntUniquePtr p) {
-    return ptr < p.ptr;
+int *IntUniquePtr :: getraw ()  const {
+    return ptr;
 }
-bool IntUniquePtr :: operator > (IntUniquePtr p) {
-    return ptr > p.ptr;
+bool IntUniquePtr :: operator < (IntUniquePtr p) const {
+    return *ptr < *p.ptr;
 }
-bool IntUniquePtr :: operator <= (IntUniquePtr p) {
-    return !(*this > p);
+bool IntUniquePtr :: operator > (IntUniquePtr p) const {
+    return *ptr > *p.ptr;
 }
-bool IntUniquePtr :: operator >= (IntUniquePtr p) {
-    return !(*this < p);
+bool IntUniquePtr :: operator <= (IntUniquePtr p) const {
+    return *ptr <= *p.ptr;
 }
-bool IntUniquePtr :: operator == (IntUniquePtr p) {
-    return p.ptr == ptr;
+bool IntUniquePtr :: operator >= (IntUniquePtr p) const {
+    return *ptr >= *p.ptr;
 }
-bool IntUniquePtr :: operator != (IntUniquePtr p) {
-    return !(p == *this);
+bool IntUniquePtr :: operator == (IntUniquePtr p) const {
+    return *p.ptr == *ptr;
+}
+bool IntUniquePtr :: operator != (IntUniquePtr p) const {
+    return *ptr != *p.ptr;
 }
