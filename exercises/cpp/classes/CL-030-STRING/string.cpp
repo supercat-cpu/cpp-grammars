@@ -1,15 +1,8 @@
-//
-//  string.cpp
-//  cl-030-string
-//
-//  Created by Екатерина Евдокимова on 30.03.20.
-//  Copyright © 2020 Екатерина Евдокимова. All rights reserved.
-//
-
 #include "string.hpp"
 
 #include <iostream>
 #include <cstdio>
+#include <cstring>
 
 String::String(const char *c) {
     if (c == nullptr) {
@@ -20,11 +13,16 @@ String::String(const char *c) {
     }
 }
 
-size_t String::length() {
+String::String(const String &str) {
+    s = new char [str.length()];
+    strcpy(s, str.s);
+}
+
+size_t String::length() const {
     return strlen(s);
 }
 
-char &String::at(size_t index) {
+char &String::at(size_t index) const {
     return s[index];
 }
 
@@ -32,8 +30,14 @@ void String::append(char *scat) {
     strcat(s, scat);
 }
 
-const char *String::raw() {
+char *String::raw() const {
     return s;
+}
+
+String& String::operator = (const String &str) {
+    s = new char [str.length()];
+    strcpy(s, str.s);
+    return *this;
 }
 
 String:: ~String() {
