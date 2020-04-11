@@ -5,30 +5,59 @@
 using namespace std;
 
 
-bool test_nullptr() {
-    char *s1 = nullptr;
-    String s(s1);
-    return s.raw() == s1;
+bool test_nullptr_constr() {
+    char *s_null = nullptr;
+    String s(s_null);
+    return s.raw() == s_null;
+}
+
+bool test_nullptr_op() {
+    char *s_null = nullptr;
+    char s [] = "abc";
+    String s1(s);
+    String s2(s_null);
+    s1 = s2;
+    return s1.raw() == s_null;
+}
+
+bool test_nullptr_length() {
+    char *s_null = nullptr;
+    String s(s_null);
+    return s.length() == -1;
+}
+
+bool test_nullptr_append() {
+    char *s_null = nullptr;
+    char s [] = "abc";
+    String s1(s_null);
+    s1.append(s);
+    return s1.raw() == s_null;
+}
+
+bool test_length_empty() {
+    char s_empty [] = "";
+    String s(s_empty);
+    return s.length() == 0;
 }
 
 bool test_length() {
-    char s1 [10] = {'K', 'o', 'r' , 'n', 'y', 'k', 'h', 'y', 'n', '\0'};
+    char s1 [] = "abcd";
     String s(s1);
     return s.length() == strlen(s1);
 }
 
 bool test_at() {
-    char s1 [10] = {'K', 'o', 'r' , 'n', 'y', 'k', 'h', 'y', 'n', '\0'};
+    char s1 [] = "abcd";
     String s(s1);
     return s.at(1) == s1[1];
 }
 
 bool test_append() {
-    char s1 [10] = {'K', 'o', 'r' , 'n', 'y', 'k', 'h', 'y', 'n', '\0'};
-    char s2 [7] = {'E', 'v', 'g', 'e', 'n', 'y', '\0'};
+    char s1 [] = "abc";
+    char s2 [] = "def";
     String s(s1);
     s.append(s2);
-    char s3 [17] = {'K', 'o', 'r' , 'n', 'y', 'k', 'h', 'y', 'n', 'E', 'v', 'g', 'e', 'n', 'y', '\0'};
+    char s3 [] = "abcdef";
     for (int i = 0; i < strlen(s3); i++)
         if (s.at(i) != s3[i])
             return false;
@@ -36,21 +65,24 @@ bool test_append() {
 }
 
 bool test_raw() {
-    char s1 [10] = {'K', 'o', 'r' , 'n', 'y', 'k', 'h', 'y', 'n', '\0'};
+    char s1 [] = "abc";
     String s(s1);
     return s.length() == strlen(s1);
 }
 
 bool test_memory() {
-    char s[5] = {'m', 'e', 'm', 'o', '\0'};
-    char s_app[3] = {'r', 'y', '0'};
-    String s_res(s);
-    s_res.append(s_app);
-    return s_res.length() != strlen(s);
+    char s[] = "memo";
+    char s_app[] = "ry";
+    String s_res1(s);
+    String s_res2(s_app);
+    s_res2 = s_res1;
+    s_res1.append(s_app);
+    s_res2.append(s_app);
+    return s_res1.length() != strlen(s) && s_res2.length() != strlen(s);
 }
 
 bool test_copy_constructor() {
-    char st[5] = {'c', 'o', 'p', 'y', '\0'};
+    char st[] = "copy";
     String s1(st);
     String s2(s1);
     s2.append(st);
@@ -58,7 +90,7 @@ bool test_copy_constructor() {
 }
 
 bool test_operator() {
-    char str[5] = {'c', 'o', 'p', 'y', '\0'};
+    char str[] = "operator";
     String s1(str);
     String s2(nullptr);
     s2 = s1;
@@ -67,13 +99,23 @@ bool test_operator() {
 }
 
 int main(int argc, const char * argv[]) {
-    cout << "test nullptr: " << test_nullptr() << endl;
     cout << "test length: " << test_length() << endl;
+    cout << "test nullptr lenght: " << test_nullptr_length() << endl;
+    cout << "test empty length: " << test_length_empty() << endl;
+    
     cout << "test at: " << test_at() << endl;
+    
     cout << "test append: " << test_append() << endl;
+    cout << "test nullptr append: " << test_nullptr_append() << endl;
+    
     cout << "test raw: " << test_raw() << endl;
+    
     cout << "test memory: " << test_memory() << endl;
+    
     cout << "test copy constructor: " << test_copy_constructor() << endl;
+    cout << "test nullptr copy constructor: " << test_nullptr_constr() << endl;
+    
     cout << "test operator: " << test_operator() << endl;
+    cout << "test nullptr operator: " << test_nullptr_op() << endl;
     return 0;
 }

@@ -14,20 +14,28 @@ String::String(const char *c) {
 }
 
 String::String(const String &str) {
-    s = new char [str.length()];
-    strcpy(s, str.s);
+    if (str.raw() == nullptr) {
+        s = nullptr;
+    } else {
+        s = new char [str.length()];
+        strcpy(s, str.s);
+    }
 }
 
 size_t String::length() const {
-    return strlen(s);
+    if (s != nullptr)
+        return strlen(s);
+    else
+        return -1;
 }
 
-char &String::at(size_t index) const {
+char &String::at(size_t index) {
     return s[index];
 }
 
 void String::append(char *scat) {
-    strcat(s, scat);
+    if (scat != nullptr && s != nullptr)
+        strcat(s, scat);
 }
 
 char *String::raw() const {
@@ -35,12 +43,17 @@ char *String::raw() const {
 }
 
 String& String::operator = (const String &str) {
-    s = new char [str.length()];
-    strcpy(s, str.s);
+    if (str.raw() == nullptr) {
+        s = nullptr;
+    } else {
+        s = new char [str.length()];
+        strcpy(s, str.s);
+    }
     return *this;
 }
 
 String:: ~String() {
-    delete [] s;
+    if (s != nullptr)
+        delete [] s;
 }
 
