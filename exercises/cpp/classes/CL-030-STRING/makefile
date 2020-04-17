@@ -12,3 +12,6 @@ test: all
 
 clean:
 	rm *.o ./a.out
+
+valgrind:
+	valgrind ./a.out
