@@ -5,36 +5,6 @@
 
 using namespace std;
 
-
-bool test_nullptr_constr() {
-    char *s_null = nullptr;
-    String s(s_null);
-    return s.raw() == s_null;
-}
-
-bool test_nullptr_op() {
-    char *s_null = nullptr;
-    char s [] = "abc";
-    String s1(s);
-    String s2(s_null);
-    s1 = s2;
-    return s1.raw() == s_null;
-}
-
-bool test_nullptr_length() {
-    char *s_null = nullptr;
-    String s(s_null);
-    return s.length() == -1;
-}
-
-bool test_nullptr_append() {
-    char *s_null = nullptr;
-    char s [] = "abc";
-    String s1(s_null);
-    s1.append(s);
-    return s1.raw() == s_null;
-}
-
 bool test_length_empty() {
     char s_empty [] = "";
     String s(s_empty);
@@ -69,8 +39,18 @@ bool test_copy_constructor() {
     char st[] = "copy";
     String s1(st);
     String s2(s1);
-    s2.append(st);
-    return s2.length() != s1.length();
+    return s2.raw() != s1.raw();
+}
+
+bool test_copy_constructor2() {
+    char st[] = "copy";
+    String s1(st);
+    String s2(s1);
+    if (s1.length() != s2.length()) return false;
+    for (int i = 0; i < s1.length(); i++)
+        if (s1.at(i) != s2.at(i))
+            return false;
+    return true;
 }
 
 bool test_operator() {
@@ -83,20 +63,11 @@ bool test_operator() {
 }
 
 int main(int argc, const char * argv[]) {
-    cout << "test nullptr lenght: " << test_nullptr_length() << endl;
     cout << "test empty length: " << test_length_empty() << endl;
-    
     cout << "test at: " << test_at() << endl;
-    
     cout << "test append: " << test_append() << endl;
-    cout << "test nullptr append: " << test_nullptr_append() << endl;
-    
     cout << "test raw: " << test_raw() << endl;
-    
-    cout << "test copy constructor: " << test_copy_constructor() << endl;
-    cout << "test nullptr copy constructor: " << test_nullptr_constr() << endl;
-    
+    cout << "test copy constructor: " << test_copy_constructor() << ' ' << test_copy_constructor2() << endl;
     cout << "test operator: " << test_operator() << endl;
-    cout << "test nullptr operator: " << test_nullptr_op() << endl;
     return 0;
 }
