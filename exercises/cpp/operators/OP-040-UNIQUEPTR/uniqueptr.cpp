@@ -3,9 +3,7 @@
 
 IntUniquePtr :: IntUniquePtr(): ptr(nullptr) {}
 
-IntUniquePtr :: IntUniquePtr(int *p) {
-    ptr = p;
-}
+IntUniquePtr :: IntUniquePtr(int *p): ptr(p) {}
 
 IntUniquePtr :: IntUniquePtr(IntUniquePtr &p) {
     ptr = p.ptr;
@@ -18,14 +16,28 @@ IntUniquePtr :: ~IntUniquePtr() {
     }
 }
 
-int& IntUniquePtr :: operator * () const {
+int &IntUniquePtr :: operator * () const {
     return *ptr;
 }
-
-int* IntUniquePtr :: getraw ()  const {
+int *IntUniquePtr :: getraw ()  const {
     return ptr;
 }
-
-int* IntUniquePtr :: operator -> (int a) {
-    return ptr;
+bool IntUniquePtr :: operator < (IntUniquePtr p) const {
+    return ptr < p.ptr;
 }
+bool IntUniquePtr :: operator > (IntUniquePtr p) const {
+    return ptr > p.ptr;
+}
+bool IntUniquePtr :: operator <= (IntUniquePtr p) const {
+    return ptr <= p.ptr;
+}
+bool IntUniquePtr :: operator >= (IntUniquePtr p) const {
+    return ptr >= p.ptr;
+}
+bool IntUniquePtr :: operator == (IntUniquePtr p) const {
+    return p.ptr == ptr;
+}
+bool IntUniquePtr :: operator != (IntUniquePtr p) const {
+    return ptr != p.ptr;
+}
+

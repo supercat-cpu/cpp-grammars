@@ -8,9 +8,14 @@ public:
     IntUniquePtr(int *p);
     IntUniquePtr(IntUniquePtr &p);
     ~IntUniquePtr();
-    int& operator * () const;
-    int* getraw()  const;
-    int* operator -> ();
+    int &operator * () const;
+    bool operator < (IntUniquePtr p) const;
+    bool operator > (IntUniquePtr p) const;
+    bool operator <= (IntUniquePtr p) const;
+    bool operator >= (IntUniquePtr p) const;
+    bool operator == (IntUniquePtr p) const;
+    bool operator != (IntUniquePtr p) const;
+    int * getraw()  const;
 };
 
 #endif
