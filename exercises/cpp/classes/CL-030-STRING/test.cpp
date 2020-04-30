@@ -41,12 +41,6 @@ bool test_length_empty() {
     return s.length() == 0;
 }
 
-bool test_length() {
-    char s1 [] = "abcd";
-    String s(s1);
-    return s.length() == strlen(s1);
-}
-
 bool test_at() {
     char s1 [] = "abcd";
     String s(s1);
@@ -71,17 +65,6 @@ bool test_raw() {
     return s.length() == strlen(s1);
 }
 
-bool test_memory() {
-    char s[] = "memo";
-    char s_app[] = "ry";
-    String s_res1(s);
-    String s_res2(s_app);
-    s_res2 = s_res1;
-    s_res1.append(s_app);
-    s_res2.append(s_app);
-    return s_res1.length() != strlen(s) && s_res2.length() != strlen(s);
-}
-
 bool test_copy_constructor() {
     char st[] = "copy";
     String s1(st);
@@ -100,7 +83,6 @@ bool test_operator() {
 }
 
 int main(int argc, const char * argv[]) {
-    cout << "test length: " << test_length() << endl;
     cout << "test nullptr lenght: " << test_nullptr_length() << endl;
     cout << "test empty length: " << test_length_empty() << endl;
     
@@ -110,8 +92,6 @@ int main(int argc, const char * argv[]) {
     cout << "test nullptr append: " << test_nullptr_append() << endl;
     
     cout << "test raw: " << test_raw() << endl;
-    
-    cout << "test memory: " << test_memory() << endl;
     
     cout << "test copy constructor: " << test_copy_constructor() << endl;
     cout << "test nullptr copy constructor: " << test_nullptr_constr() << endl;
