@@ -22,22 +22,3 @@ int &IntUniquePtr :: operator * () const {
 int *IntUniquePtr :: getraw ()  const {
     return ptr;
 }
-bool IntUniquePtr :: operator < (IntUniquePtr p) const {
-    return ptr < p.ptr;
-}
-bool IntUniquePtr :: operator > (IntUniquePtr p) const {
-    return ptr > p.ptr;
-}
-bool IntUniquePtr :: operator <= (IntUniquePtr p) const {
-    return ptr <= p.ptr;
-}
-bool IntUniquePtr :: operator >= (IntUniquePtr p) const {
-    return ptr >= p.ptr;
-}
-bool IntUniquePtr :: operator == (IntUniquePtr p) const {
-    return p.ptr == ptr;
-}
-bool IntUniquePtr :: operator != (IntUniquePtr p) const {
-    return ptr != p.ptr;
-}
-

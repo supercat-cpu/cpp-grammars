@@ -9,12 +9,6 @@ public:
     IntUniquePtr(IntUniquePtr &p);
     ~IntUniquePtr();
     int &operator * () const;
-    bool operator < (IntUniquePtr p) const;
-    bool operator > (IntUniquePtr p) const;
-    bool operator <= (IntUniquePtr p) const;
-    bool operator >= (IntUniquePtr p) const;
-    bool operator == (IntUniquePtr p) const;
-    bool operator != (IntUniquePtr p) const;
     int * getraw()  const;
 };
 
