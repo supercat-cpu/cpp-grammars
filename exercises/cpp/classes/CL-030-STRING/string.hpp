@@ -10,6 +10,7 @@ public:
     String(const String &s);
     size_t length() const;
     char &at(size_t index);
+    char at(size_t index) const;
     void append(char *);
     char * raw() const;
     String& operator = (const String &s);

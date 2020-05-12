@@ -33,6 +33,10 @@ char &String::at(size_t index) {
     return s[index];
 }
 
+char String::at(size_t index) const {
+    return s[index];
+}
+
 void String::append(char *scat) {
     if (scat != nullptr && s != nullptr)
     {
