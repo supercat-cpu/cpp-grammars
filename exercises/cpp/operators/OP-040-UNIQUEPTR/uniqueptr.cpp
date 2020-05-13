@@ -19,6 +19,7 @@ IntUniquePtr :: ~IntUniquePtr() {
 int &IntUniquePtr :: operator * () const {
     return *ptr;
 }
+
 int *IntUniquePtr :: getraw ()  const {
     return ptr;
 }
