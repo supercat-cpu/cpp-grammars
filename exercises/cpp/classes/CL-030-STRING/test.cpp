@@ -17,6 +17,12 @@ bool test_at() {
     return s.at(1) == s1[1];
 }
 
+bool test_at_const() {
+    char s1 [] = "abcd";
+    const String s(s1);
+    return s.at(1) == s1[1];
+}
+
 bool test_append() {
     char s1 [] = "abc";
     char s2 [] = "def";
@@ -65,6 +71,7 @@ bool test_operator() {
 int main(int argc, const char * argv[]) {
     cout << "test empty length: " << test_length_empty() << endl;
     cout << "test at: " << test_at() << endl;
+    cout << "test at const: " << test_at_const() << endl;
     cout << "test append: " << test_append() << endl;
     cout << "test raw: " << test_raw() << endl;
     cout << "test copy constructor: " << test_copy_constructor() << ' ' << test_copy_constructor2() << endl;
